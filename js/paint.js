@@ -39,7 +39,19 @@ case 1:{
 can.rect(x1,y1,Math.abs(x2-x1),Math.abs(y2-y1));
 break;
 }
+case 2:{
+var r = Math.pow((x2-x1),2) + Math.pow((y2-y1),2);
+r = Math.sqrt(r);
+can.arc(x1,y1,r,0, 2 * Math.PI, true);
+break;
+}
+case 3:{
+can.rect(x1,y1,Math.abs(x2-x1),Math.abs(x2-x1));
+break;
+}
 }
 can.stroke();
 });
+
+
 });
