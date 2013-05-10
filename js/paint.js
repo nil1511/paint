@@ -1,5 +1,7 @@
 $(function(){
 var x1,y1,x2,y2l,d=4;
+var img;
+var canvasid = document.getElementById("paint");
 var can = $("canvas")[0].getContext("2d");
 $("button").click(function(e){
 //console.log(e.currentTarget.textContent);
@@ -19,11 +21,13 @@ break;
 case "Pen":
 d=4;
 break;
+case "Save":
+var img=canvasid.toDataURL();
+window.win = open(img);
+break;
 }
-
 });
 $("#paint").mousedown(function(e){
-console.log(e);
 x1=e.pageX - this.offsetLeft;
 y1=e.pageY - this.offsetTop;
 can.beginPath();
@@ -37,8 +41,6 @@ can.lineTo(x2, y2);
 can.stroke();
 }
 });
-
-
 $("#paint").mouseup(function(e){
 if(d==4)return;
 x2=e.pageX - this.offsetLeft;
@@ -65,6 +67,4 @@ break;
 }
 can.stroke();
 });
-
-
 });
