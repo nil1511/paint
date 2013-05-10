@@ -1,5 +1,5 @@
 $(function(){
-var x1,y1,x2,y2l,d=0;
+var x1,y1,x2,y2l,d=4;
 var can = $("canvas")[0].getContext("2d");
 $("button").click(function(e){
 //console.log(e.currentTarget.textContent);
@@ -16,6 +16,9 @@ break;
 case "Square":
 d=3;
 break;
+case "Pen":
+d=4;
+break;
 }
 
 });
@@ -26,10 +29,20 @@ y1=e.pageY - this.offsetTop;
 can.beginPath();
 can.moveTo(x1, y1);
 });
-$("#paint").mouseup(function(e){
+$("#paint").mousemove(function(e){
+if(d==4&&e.which){
 x2=e.pageX - this.offsetLeft;
 y2=e.pageY - this.offsetTop;
+can.lineTo(x2, y2);
+can.stroke();
+}
+});
 
+
+$("#paint").mouseup(function(e){
+if(d==4)return;
+x2=e.pageX - this.offsetLeft;
+y2=e.pageY - this.offsetTop;
 switch (d){
 case 0:
 {can.lineTo(x2, y2);
