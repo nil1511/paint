@@ -4,6 +4,11 @@ $(function () {
     var canvasid = document.getElementById("paint");
     var can = $("canvas")[0].getContext("2d");
     var local = window.localStorage;
+	$("#saved").click(function(e){
+	for(var i=0;i<local.length;i++){
+	$("#saved").append('<li class="load">'+local.key(i)+'</li>');
+	}
+	});
     $("button").click(function (e) {
         //console.log(e.currentTarget.textContent);
         switch (e.currentTarget.textContent) {
