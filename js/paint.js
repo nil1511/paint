@@ -3,33 +3,48 @@ $(function () {
     var img;
     var canvasid = document.getElementById("paint");
     var can = $("canvas")[0].getContext("2d");
+    var local = window.localStorage;
     $("button").click(function (e) {
         //console.log(e.currentTarget.textContent);
         switch (e.currentTarget.textContent) {
         case "Line":
-            {d = 0;
-            break;}
+            {
+                d = 0;
+                break;
+            }
         case "Rect":
-            {d = 1;
-            break;}
+            {
+                d = 1;
+                break;
+            }
         case "Circle":
-            {d = 2;
-            break;}
+            {
+                d = 2;
+                break;
+            }
         case "Square":
-            {d = 3;
-            break;}
+            {
+                d = 3;
+                break;
+            }
         case "Pen":
-            {d = 4;
-            break;}
+            {
+                d = 4;
+                break;
+            }
         case "Save":
-            {var img = canvasid.toDataURL();
-            window.win = open(img);
-            break;}
-		case "Clear":
-			{
-			  can.clearRect(0, 0, canvasid.width, canvasid.height);
-			break;
-			}
+            {
+                img = canvasid.toDataURL();
+                var name = prompt("Give a name to the file", "file");
+                local.setItem(name, img);
+                console.log(local);
+                break;
+            }
+        case "Clear":
+            {
+                can.clearRect(0, 0, canvasid.width, canvasid.height);
+                break;
+            }
         }
     });
     $("#paint").mousedown(function (e) {
