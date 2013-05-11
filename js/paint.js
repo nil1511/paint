@@ -37,7 +37,6 @@ $(function () {
                 img = canvasid.toDataURL();
                 var name = prompt("Give a name to the file", "file");
                 local.setItem(name, img);
-                console.log(local);
                 break;
             }
         case "Clear":
@@ -45,6 +44,19 @@ $(function () {
                 can.clearRect(0, 0, canvasid.width, canvasid.height);
                 break;
             }
+        case "Open":
+            {
+                can.clearRect(0, 0, canvasid.width, canvasid.height);
+				var name = prompt("File to open", "file");
+				var o = new Image();
+				o.src =local.getItem(name);
+				can.drawImage(o,0, 0);
+                break;
+            }
+		case "Delete All":
+			{
+			local.clear();
+			}
         }
     });
     $("#paint").mousedown(function (e) {
