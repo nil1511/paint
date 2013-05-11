@@ -1,14 +1,9 @@
-$(function () {
-    var x1, y1, x2, y2l, d = 4;
-    var img;
+var x1, y1, x2, y2l, d = 4;
+    var img,o;
     var canvasid = document.getElementById("paint");
     var can = $("canvas")[0].getContext("2d");
     var local = window.localStorage;
-	$("#saved").click(function(e){
-	for(var i=0;i<local.length;i++){
-	$("#saved").append('<li class="load">'+local.key(i)+'</li>');
-	}
-	});
+$(function () {
     $("button").click(function (e) {
         //console.log(e.currentTarget.textContent);
         switch (e.currentTarget.textContent) {
@@ -53,7 +48,7 @@ $(function () {
             {
                 
                 var name = prompt("File to open", "File Name");
-                var o = new Image();
+                o = new Image();
                 o.src = local.getItem(name);
 				if(o.src==""){
 				alert("No such File");
@@ -115,3 +110,15 @@ $(function () {
         can.stroke();
     });
 });
+function ulclick(){
+	$("ul").html('<span id="saved">Saved Images(Click to Refresh)</span>');
+	for(var i=0;i<local.length;i++){
+	$("ul").append('<li onclick=loadcan(this)>'+local.key(i)+'</li>');
+	}
+	}
+	function loadcan(elem){
+	can.clearRect(0, 0, canvasid.width, canvasid.height);
+	o = new Image();
+	o.src = local.getItem(elem.innerHTML);
+	can.drawImage(o, 0, 0);
+	}
