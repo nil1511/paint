@@ -1,8 +1,8 @@
 var x1, y1, x2, y2l, d = 4;
-    var img,o;
-    var canvasid = document.getElementById("paint");
-    var can = $("canvas")[0].getContext("2d");
-    var local = window.localStorage;
+var img, o;
+var canvasid = document.getElementById("paint");
+var can = $("canvas")[0].getContext("2d");
+var local = window.localStorage;
 $(function () {
     $("button").click(function (e) {
         //console.log(e.currentTarget.textContent);
@@ -46,22 +46,22 @@ $(function () {
             }
         case "Open":
             {
-                
+
                 var name = prompt("File to open", "File Name");
                 o = new Image();
                 o.src = local.getItem(name);
-				if(o.src==""){
-				alert("No such File");
-				break;
-				}
-				can.clearRect(0, 0, canvasid.width, canvasid.height);
+                if (o.src == "") {
+                    alert("No such File");
+                    break;
+                }
+                can.clearRect(0, 0, canvasid.width, canvasid.height);
                 can.drawImage(o, 0, 0);
                 break;
             }
         case "Delete All":
             {
                 local.clear();
-				break;
+                break;
             }
         }
     });
@@ -110,15 +110,17 @@ $(function () {
         can.stroke();
     });
 });
-function ulclick(){
-	$("ul").html('<span id="saved">Saved Images(Click to Refresh)</span>');
-	for(var i=0;i<local.length;i++){
-	$("ul").append('<li onclick=loadcan(this)>'+local.key(i)+'</li>');
-	}
-	}
-	function loadcan(elem){
-	can.clearRect(0, 0, canvasid.width, canvasid.height);
-	o = new Image();
-	o.src = local.getItem(elem.innerHTML);
-	can.drawImage(o, 0, 0);
-	}
+
+function ulclick() {
+    $("ul").html('<span id="saved">Saved Images(Click to Refresh)</span>');
+    for (var i = 0; i < local.length; i++) {
+        $("ul").append('<li onclick=loadcan(this)>' + local.key(i) + '</li>');
+    }
+}
+
+function loadcan(elem) {
+    can.clearRect(0, 0, canvasid.width, canvasid.height);
+    o = new Image();
+    o.src = local.getItem(elem.innerHTML);
+    can.drawImage(o, 0, 0);
+}
