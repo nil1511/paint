@@ -47,16 +47,17 @@ $(function () {
         case "Open":
             {
                 can.clearRect(0, 0, canvasid.width, canvasid.height);
-				var name = prompt("File to open", "file");
-				var o = new Image();
-				o.src =local.getItem(name);
-				can.drawImage(o,0, 0);
+                var name = prompt("File to open", "File Name");
+                var o = new Image();
+                o.src = local.getItem(name);
+                can.drawImage(o, 0, 0);
                 break;
             }
-		case "Delete All":
-			{
-			local.clear();
-			}
+        case "Delete All":
+            {
+                local.clear();
+				break;
+            }
         }
     });
     $("#paint").mousedown(function (e) {
