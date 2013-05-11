@@ -7,24 +7,29 @@ $(function () {
         //console.log(e.currentTarget.textContent);
         switch (e.currentTarget.textContent) {
         case "Line":
-            d = 0;
-            break;
+            {d = 0;
+            break;}
         case "Rect":
-            d = 1;
-            break;
+            {d = 1;
+            break;}
         case "Circle":
-            d = 2;
-            break;
+            {d = 2;
+            break;}
         case "Square":
-            d = 3;
-            break;
+            {d = 3;
+            break;}
         case "Pen":
-            d = 4;
-            break;
+            {d = 4;
+            break;}
         case "Save":
-            var img = canvasid.toDataURL();
+            {var img = canvasid.toDataURL();
             window.win = open(img);
-            break;
+            break;}
+		case "Clear":
+			{
+			  can.clearRect(0, 0, canvasid.width, canvasid.height);
+			break;
+			}
         }
     });
     $("#paint").mousedown(function (e) {
