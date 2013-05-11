@@ -46,10 +46,15 @@ $(function () {
             }
         case "Open":
             {
-                can.clearRect(0, 0, canvasid.width, canvasid.height);
+                
                 var name = prompt("File to open", "File Name");
                 var o = new Image();
                 o.src = local.getItem(name);
+				if(o.src==""){
+				alert("No such File");
+				break;
+				}
+				can.clearRect(0, 0, canvasid.width, canvasid.height);
                 can.drawImage(o, 0, 0);
                 break;
             }
